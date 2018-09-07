@@ -1,0 +1,16 @@
+{
+  "name": "ssetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "eventAnimation.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "sse": "0.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
