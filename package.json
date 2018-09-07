@@ -4,7 +4,10 @@
   "description": "",
   "main": "eventAnimation.js",
   "dependencies": {
+    "compression": "^1.7.3",
     "express": "^4.16.3",
+    "path": "^0.12.7",
+    "server-sent-events": "^1.0.1",
     "sse": "0.0.8"
   },
   "devDependencies": {},
