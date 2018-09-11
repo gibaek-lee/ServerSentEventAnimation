@@ -19,7 +19,8 @@ app.get('/',function(req,res){
   res.sendFile(path.join(__dirname, './index.html'));
 });
 
-// server-sent event stream using compession npm
+/* server-sent event stream using compession npm
+https://expressjs.com/en/resources/middleware/compression.html*/
 app.use(compression());
 app.get('/events', function (req, res) {
   //DB requset
@@ -28,18 +29,34 @@ app.get('/events', function (req, res) {
   */
 
   //make sever sent event data
-  res.setHeader('Content-Type', 'text/event-stream')
-  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Content-Type', 'text/event-stream');//text/plain도 옵션으로 있음
+  res.setHeader('Cache-Control', 'no-cache');
 
   // send a ping approx every 2 seconds
   var timer = setInterval(function () {
-    res.write('data: ping\n\n')
+    var sampleData = {
+      resC:{
+        result: true,
+        comment: "cctv!"
+      },
+      resD:{
+        result: false,
+        comment: "danger!"
+      }
+    }
 
-    // !!! this is the important part
-    res.flush()
-  }, 2000)
+    //res.write('data: ping\n\n');//text/event-stream에서 data: 와 \n\n은 write에 필수.
+    //\n\n 안해주면 write가 안끝나서 클라이언트 request에 response를 flush하지 않고 계속 쓰기만 한다.
+    res.write(`data:${JSON.stringify(sampleData)}\n\n`);
 
-  res.on('close', function () {
-    clearInterval(timer)
-  })
-})
+    //flush data
+    res.flush();
+    console.log("flush data!");
+
+  }, 3000);//every 3000ms, flush data to client
+
+  res.on('close', function () {//클라이언트 요청이 끊겼을때
+    console.log("clear timer!");
+    clearInterval(timer);
+  });
+});

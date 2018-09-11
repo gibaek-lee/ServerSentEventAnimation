@@ -1,0 +1,16 @@
+html, body{
+  width: auto;
+}
+img{
+  width:50%;
+}
+#alertPopUp, #alertImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#alertMsg{
+  font-size:30px;
+  font-weight: bold;
+}

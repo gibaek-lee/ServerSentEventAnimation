@@ -1,42 +1,44 @@
 function alertAnimation(sseRespData){
-  let start = Date.now(); // remember start time
+  let start = Date.now();
+  var alertDOM = document.getElementById("alertPopUp");
 
   let timer = setInterval(function() {
-    if(sseRespData.resC.result && !sseRespData.resD.result){
-      cctvNotiAni(sseRespData.resC);
-      safeNotiAni();
-    }else if(!sseRespData.resC.result && sseRespData.resD.result){
-      dangerNotiAni(sseRespData.resD);
-    }else{
-      //중립
-    }
-  }, 20);
-
-  // as timePassed goes from 0 to 2000
-  // left gets values from 0px to 400px
-  function draw(timePassed) {
-    train.style.left = timePassed / 5 + 'px';
-  }
-
-  //animations
-  function cctvNotiAni(data){
-    // how much time passed from the start?
     let timePassed = Date.now() - start;
 
-    if (timePassed >= 2000) {
-      clearInterval(timer); // finish the animation after 2 seconds
+    if (timePassed > 2000) {
+      clearDOM(alertDOM);//after 2000ms, clear alertPopUp
+      clearInterval(timer); // finish the animation after 2000ms, take a rest 1000ms
       return;
     }
 
-    // draw the animation at the moment timePassed
-    (function draw(timePassed){
-      train.style.left = timePassed / 5 + 'px';
-    })();
-  }
-  function safeNotiAni(data){
+    //draw
+    if(sseRespData.resC.result && !sseRespData.resD.result){
+      //0~1000ms: cctv notify, 1000ms~2000ms: safe notify
+      (timePassed < 1000) ? cctvNotiAni(sseRespData.resC, alertDOM, timePassed) : safeNotiAni(alertDOM, timePassed);
+    }else if(!sseRespData.resC.result && sseRespData.resD.result){
+      dangerNotiAni(sseRespData.resD, alertDOM, timePassed);
+    }
+  }, 20);//draw animation every 20 milli seconds, about 50 frame per second.
+}
 
-  }
-  function dangerNotiAni(data){
-
-  }
+//draw functions
+function cctvNotiAni(data, dom, time){
+  dom.children[0].children[0].src='image/cctvNotifyImg.png';
+  dom.children[1].innerHTML=data.comment;
+  dom.style.opacity=time/2000;//opacity 0 to 1 during 2000ms
+}
+function safeNotiAni(dom, time){
+  dom.children[0].children[0].src='image/safeNotifyImg.png';
+  dom.children[1].innerHTML='safe!';
+  dom.style.opacity=time/2000;
+}
+function dangerNotiAni(data, dom, time){
+  dom.children[0].children[0].src='image/dangerNotifyImg.png';
+  dom.children[1].innerHTML=data.comment;
+  dom.style.opacity=time/2000;
+}
+function clearDOM(dom){
+  dom.children[0].children[0].src='';
+  dom.children[1].innerHTML='';
+  dom.style.opacity=0;
 }

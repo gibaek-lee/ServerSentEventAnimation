@@ -1,10 +1,10 @@
 if(typeof(EventSource) !== "undefined") {
     var source = new EventSource("/events");
-    source.onmessage = function(event) {//event=client.send(data) from sse server
-      console.log(`Data from the server : ${event.data}`);
+    source.onmessage = function(event) {//event = flush data from sse server
+      console.log("Data from the server : " + event.data);
 
       //when sse occur, do something.For example, Facebook/Twitter updates, etc.
-      //alertAnimation(event.data);
+      alertAnimation(JSON.parse(event.data));
 
     };
 } else {
