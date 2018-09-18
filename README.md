@@ -17,12 +17,12 @@ step5. Check 'Ping' consoles at ChromDevTools with alert animation.
 - 'sampleData.resD.result = true/false' means check whether Danger spot data are in DB<br>
 
 <p align="center">
-  <img width="50%" src="./image/1.png"><br>
+  <img width="100%" src="./public/image/1.png"><br>
   CCTV alert animation and console message
 </p><br>
 
 <p align="center">
-  <img width="70%" src="./image/2.png"><br>
+  <img width="100%" src="./public/image/2.png"><br>
   SSE Network
 </p><br>
 
