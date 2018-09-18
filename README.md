@@ -26,11 +26,6 @@ step5. Check 'Ping' consoles at ChromDevTools with alert animation.
   SSE Network
 </p><br>
 
-<p align="center">
-  <img width="60%" src="./image/3.png"><br>
-  Confirm contents ranges
-</p>
-
 ### Issue and code review
 - sseClient.js: Only for SSE client request. Once request generates, doesn't stop check event from server even in no server connection.
 - (sseServer.js) app.get('/event'): need to send Ping. Have to check whether it works asynchronized.
@@ -51,3 +46,4 @@ Gi-baek lee, first commit, No contribution. [More about me, LinkedIn](https://ww
 
 ## License
 - npm middleware: MIT
+- Images: Pixabay.com
