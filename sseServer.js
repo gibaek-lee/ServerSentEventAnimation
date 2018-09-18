@@ -23,7 +23,7 @@ app.get('/',function(req,res){
 https://expressjs.com/en/resources/middleware/compression.html*/
 app.use(compression());
 app.get('/events', function (req, res) {
-  //DB requset
+  //DB check request(CCTV and danger spot)
   /*
 
   */
