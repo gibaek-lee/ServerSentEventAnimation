@@ -4,6 +4,8 @@ Server sent event generates alert two type of animation depending on the informa
 ## Getting Started
 Check 'Ping's from server via console message and animations.
 
+![](./video/SSEgif.gif)
+
 ## Running the tests
 step1. No installation. Fork this repository and pull it to your local enviroment.<br>
 step2. Install npm packages : $npm install<br>
