@@ -9,7 +9,7 @@ Check 'Ping's from server via console message and animations.
 ## Running the tests
 step1. No installation. Fork this repository and pull it to your local enviroment.<br>
 step2. Install npm packages : $npm install<br>
-step3. Run streaming server : $node streamingServer<br>
+step3. Run streaming server : $node sseServer<br>
 step4. Connect url 'localhost:8080' on internet browser(in my case, Chrome).
 step5. Check 'Ping' consoles at ChromDevTools with alert animation.
 
